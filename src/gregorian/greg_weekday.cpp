@@ -18,6 +18,7 @@
 namespace boost {
 namespace gregorian {
   
+#ifdef BOOST_NO_CXX17_CONST_INLINE
   //! Return a 3 digit english string of the day of week (eg: Sun)
   const char*
   greg_weekday::as_short_string() const 
@@ -31,7 +32,7 @@ namespace gregorian {
     return long_weekday_names[value_];
   }
   
-#ifndef BOOST_NO_STD_WSTRING
+#  ifndef BOOST_NO_STD_WSTRING
   //! Return a 3 digit english wchar_t string of the day of week (eg: Sun)
   const wchar_t*
   greg_weekday::as_short_wstring() const 
@@ -44,7 +45,7 @@ namespace gregorian {
   {
     return w_long_weekday_names[value_];
   }
-#endif // BOOST_NO_STD_WSTRING
-  
+#  endif // BOOST_NO_STD_WSTRING
+#endif // BOOST_NO_CXX17_CONST_INLINE
 } } //namespace gregorian
 

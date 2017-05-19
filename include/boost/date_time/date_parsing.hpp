@@ -64,9 +64,9 @@ namespace date_time {
       }
       else {
         std::string str = convert_to_lower(s);
-        typename month_type::month_map_ptr_type ptr = month_type::get_month_map_ptr();
-        typename month_type::month_map_type::iterator iter = ptr->find(str);
-        if(iter != ptr->end()) { // required for STLport
+        typename month_type::month_map_type/*&*/ months = month_type::get_month_map();
+        typename month_type::month_map_type::iterator iter = months.find(str);
+        if(iter != months.end() ) { // required for STLport
           return iter->second;
         }
       }

@@ -11,6 +11,9 @@
 
 #include <boost/date_time/constrained_value.hpp>
 #include <boost/date_time/date_defs.hpp>
+#include "greg_names.hpp"
+#include "greg_names_17.hpp"
+
 #ifdef BOOST_NO_CXX11_SMART_PTR
 #include <boost/shared_ptr.hpp>
 #else
@@ -55,7 +58,6 @@ namespace gregorian {
   //! A constrained range that implements the gregorian_month rules
   typedef CV::constrained_value<greg_month_policies> greg_month_rep;
 
-  
   //! Wrapper class to represent months in gregorian based calendar
   class BOOST_DATE_TIME_DECL greg_month : public greg_month_rep {
   public:
@@ -76,14 +78,37 @@ namespace gregorian {
     //! Returns month as number from 1 to 12
     unsigned short as_number() const {return value_;}
     month_enum as_enum() const {return static_cast<month_enum>(value_);}
-    const char* as_short_string() const;
-    const char* as_long_string()  const;
+#ifdef BOOST_NO_CXX17_CONST_INLINE
+      const char* as_short_string() const {
+          return greg_names::short_month_names[value_-1];
+      }
+      inline const char* as_long_string()  const {
+          return greg_names::long_month_names[value_-1];
+      }
+#else
+      const char* as_short_string() const {
+          return short_month_names[value_-1].data();
+      }
+      const char* as_long_string()  const {
+          return long_month_names[value_-1].data();
+      }
+#endif
+
 #ifndef BOOST_NO_STD_WSTRING
     const wchar_t* as_short_wstring() const;
     const wchar_t* as_long_wstring()  const;
 #endif // BOOST_NO_STD_WSTRING
-    //! Shared pointer to a map of Month strings (Names & Abbrev) & numbers
-    static month_map_ptr_type get_month_map_ptr();
+    //! Map of Month strings (Names & Abbrev) & numbers
+    static const month_map_type& get_month_map()
+      {
+          static const month_map_type months = {
+              {"Jan", 1}, {"Feb", 2}, {"Mar", 3}, {"Apr", 4},
+              {"May", 5}, {"Jun", 6}, {"Jul", 7}, {"Aug", 8},
+              {"Sep", 9}, {"Oct", 10}, {"Nov", 11}, {"Dec", 12}
+          };
+
+          return months;
+      }
 
     /* parameterized as_*_string functions are intended to be called
      * from a template function: "... as_short_string(charT c='\0');" */
@@ -105,6 +130,7 @@ namespace gregorian {
       return as_long_wstring();
     }
 #endif // BOOST_NO_STD_WSTRING
+      
   };
 
 } } //namespace gregorian

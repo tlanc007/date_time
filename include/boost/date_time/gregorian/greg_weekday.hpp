@@ -12,6 +12,9 @@
 #include <boost/date_time/constrained_value.hpp>
 #include <boost/date_time/date_defs.hpp>
 #include <boost/date_time/compiler_config.hpp>
+#include "greg_names.hpp"
+#include "greg_names_17.hpp"
+
 #include <stdexcept>
 #include <string>
 
@@ -46,12 +49,34 @@ namespace gregorian {
     {}
 
     unsigned short as_number() const {return value_;}
-    const char* as_short_string() const;
-    const char* as_long_string()  const;
-#ifndef BOOST_NO_STD_WSTRING
+      
+#ifdef BOOST_NO_CXX17_CONST_INLINE
+      const char* as_short_string() const {
+          return greg_names::short_weekday_names[value_];
+      }
+      const char* as_long_string()  const {
+          return greg_names::long_weekday_names[value_];
+      }
+#  ifndef BOOST_NO_STD_WSTRING
     const wchar_t* as_short_wstring() const;
     const wchar_t* as_long_wstring()  const;
-#endif // BOOST_NO_STD_WSTRING
+#  endif // BOOST_NO_STD_WSTRING
+#else
+      const char* as_short_string() const {
+          return short_weekday_names[value_].data();
+      }
+      const char* as_long_string()  const {
+          return long_weekday_names[value_].data();
+      }
+#  ifndef BOOST_NO_STD_WSTRING
+      const wchar_t* as_short_wstring() const {
+          return w_short_weekday_names[value_].data();
+      }
+      const wchar_t* as_long_wstring()  const {
+          return w_long_weekday_names[value_].data();
+      }
+#  endif // BOOST_NO_STD_WSTRING
+#endif // BOOST_NO_CXX17_CONST_INLINE
     weekday_enum as_enum() const {return static_cast<weekday_enum>(value_);}
 
 

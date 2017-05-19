@@ -38,6 +38,20 @@ main()
               << ymd.day << ", " << ymd.year
               << std::endl;
 
+    greg_weekday wd = d1.day_of_week();
+    std::cout << wd.as_long_string() << " ";
+
+    date::ymd_type ymd = d1.year_month_day();
+    std::cout << ymd.month.as_long_string() << " "
+      << ymd.day << ", " << ymd.year << std::endl;
+
+#ifndef BOOST_NO_CXX17_STRUCT_BIND   // hack not offical
+    // C++17 structured bind
+    auto [yr, mo, dy] = d1.year_month_day();
+    std::cout << "\nC++17 Structured binding: " >> mo.as_long_string() << " "
+      << dy << ", " << yr << "\n";
+#endif
+      
     //Let's send in month 25 by accident and create an exception
     std::string bad_date("20012509"); //2001-??-09
     std::cout << "An expected exception is next: " << std::endl;
