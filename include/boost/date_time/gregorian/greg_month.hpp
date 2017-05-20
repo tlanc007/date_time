@@ -58,6 +58,7 @@ namespace gregorian {
   //! A constrained range that implements the gregorian_month rules
   typedef CV::constrained_value<greg_month_policies> greg_month_rep;
 
+    
   //! Wrapper class to represent months in gregorian based calendar
   class BOOST_DATE_TIME_DECL greg_month : public greg_month_rep {
   public:
@@ -101,12 +102,32 @@ namespace gregorian {
     //! Map of Month strings (Names & Abbrev) & numbers
     static const month_map_type& get_month_map()
       {
+#ifndef PRE_CPP11 // Todo: HACK -- Need offical boost macro!
           static const month_map_type months = {
               {"Jan", 1}, {"Feb", 2}, {"Mar", 3}, {"Apr", 4},
               {"May", 5}, {"Jun", 6}, {"Jul", 7}, {"Aug", 8},
               {"Sep", 9}, {"Oct", 10}, {"Nov", 11}, {"Dec", 12}
           };
-
+#else
+          static month_map_type months;
+          static bool is_first = true;
+          
+          if (is_first) {
+              is_first = false;
+              months["Jan"] = 1;
+              months["Feb"] = 2;
+              months["Mar"] = 3;
+              months["Apr"] = 4;
+              months["May"] = 5;
+              months["Jun"] = 6;
+              months["Jul"] = 7;
+              months["Aug"] = 8;
+              months["Sep"] = 9;
+              months["Oct"] = 10;
+              months["Nov"] = 11;
+              months["Dec"] = 12;
+          }
+#endif
           return months;
       }
 
@@ -132,7 +153,6 @@ namespace gregorian {
 #endif // BOOST_NO_STD_WSTRING
       
   };
-
 } } //namespace gregorian
 
 

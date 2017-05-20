@@ -38,13 +38,6 @@ main()
               << ymd.day << ", " << ymd.year
               << std::endl;
 
-    greg_weekday wd = d1.day_of_week();
-    std::cout << wd.as_long_string() << " ";
-
-    date::ymd_type ymd = d1.year_month_day();
-    std::cout << ymd.month.as_long_string() << " "
-      << ymd.day << ", " << ymd.year << std::endl;
-
 #ifndef BOOST_NO_CXX17_STRUCT_BIND   // hack not offical
     // C++17 structured bind
     auto [yr, mo, dy] = d1.year_month_day();

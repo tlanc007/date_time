@@ -62,24 +62,14 @@ namespace gregorian {
 
   inline std::string to_sql_string(const date& d) 
   {
-    std::ostringstream ss;
-#ifdef BOOST_NO_CXX17_STRUCT_BIND
     date::ymd_type ymd = d.year_month_day();
+    std::ostringstream ss;
     ss << ymd.year << "-"
-       << std::setw(2) << std::setfill('0') 
+       << std::setw(2) << std::setfill('0')
        << ymd.month.as_number() //solves problem with gcc 3.1 hanging
        << "-"
        << std::setw(2) << std::setfill('0') 
        << ymd.day;
-#else
-      auto [year, month, day] {d.year_month_day() };
-      ss << year << "-"
-      << std::setw(2) << std::setfill('0')
-      << month.as_number() //solves problem with gcc 3.1 hanging
-      << "-"
-      << std::setw(2) << std::setfill('0')
-      << day;
-#endif
     return ss.str();
   }
 

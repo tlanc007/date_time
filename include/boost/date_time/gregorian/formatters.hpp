@@ -104,8 +104,8 @@ namespace gregorian {
   template<class charT>
   inline std::basic_string<charT> to_sql_string_type(const date& d) 
   {
-    std::basic_ostringstream<charT> ss;
     date::ymd_type ymd = d.year_month_day();
+    std::basic_ostringstream<charT> ss;
     ss << ymd.year << "-"
        << std::setw(2) << std::setfill(ss.widen('0')) 
        << ymd.month.as_number() //solves problem with gcc 3.1 hanging
