@@ -12,6 +12,7 @@
 #include <boost/date_time/constrained_value.hpp>
 #include <boost/date_time/date_defs.hpp>
 #include <boost/date_time/compiler_config.hpp>
+#include "boost/date_time/gregorian/greg_weekday.hpp"
 #include "greg_names.hpp"
 #include "greg_names_17.hpp"
 
@@ -51,15 +52,23 @@ namespace gregorian {
     unsigned short as_number() const {return value_;}
       
 #ifdef BOOST_NO_CXX17_CONST_INLINE
+      //! Return a 3 digit english string of the day of week (eg: Sun)
       const char* as_short_string() const {
           return greg_names::short_weekday_names[value_];
       }
+      //! Return a point to a long english string representing day of week
       const char* as_long_string()  const {
           return greg_names::long_weekday_names[value_];
       }
 #  ifndef BOOST_NO_STD_WSTRING
-    const wchar_t* as_short_wstring() const;
-    const wchar_t* as_long_wstring()  const;
+      //! Return a 3 digit english wchar_t string of the day of week (eg: Sun)
+      const wchar_t* as_short_wstring() const {
+          return w_short_weekday_names[value_];
+      }
+      //! Return a point to a long english wchar_t string representing day of week
+      const wchar_t* as_long_wstring()  const {
+          return w_long_weekday_names[value_];
+      }
 #  endif // BOOST_NO_STD_WSTRING
 #else
       const char* as_short_string() const {
