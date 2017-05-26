@@ -96,13 +96,17 @@ namespace gregorian {
 #endif
 
 #ifndef BOOST_NO_STD_WSTRING
-    const wchar_t* as_short_wstring() const;
-    const wchar_t* as_long_wstring()  const;
+      const wchar_t* as_short_wstring() const {
+          return greg_names::w_short_month_names[value_-1];
+      }
+      const wchar_t* as_long_wstring()  const {
+          return greg_names::w_long_month_names[value_-1];
+      }
 #endif // BOOST_NO_STD_WSTRING
     //! Map of Month strings (Names & Abbrev) & numbers
-    static const month_map_type& get_month_map()
+    static /* const */ month_map_type& get_month_map()
       {
-#ifndef PRE_CPP11 // Todo: HACK -- Need offical boost macro!
+#ifndef BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
           static const month_map_type months = {
               {"Jan", 1}, {"Feb", 2}, {"Mar", 3}, {"Apr", 4},
               {"May", 5}, {"Jun", 6}, {"Jul", 7}, {"Aug", 8},
@@ -127,7 +131,7 @@ namespace gregorian {
               months["Nov"] = 11;
               months["Dec"] = 12;
           }
-#endif
+#endif // BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
           return months;
       }
 
