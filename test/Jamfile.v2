@@ -32,7 +32,6 @@ test-suite date_time_core
    [ run gregorian/testgenerators.cpp ../build//boost_date_time/<link>static : : : $(DATE_TIME_PROPERTIES) ]
    [ run gregorian/testgreg_cal.cpp ../build//boost_date_time/<link>static : : : $(DATE_TIME_PROPERTIES) ]
    [ run gregorian/testgreg_day.cpp ../build//boost_date_time/<link>static : : : $(DATE_TIME_PROPERTIES) ]     
-   [ run gregorian/testgreg_month.cpp ../build//boost_date_time/<link>static : : : $(DATE_TIME_PROPERTIES) ]
    [ run gregorian/testgreg_year.cpp ../build//boost_date_time/<link>static : : : $(DATE_TIME_PROPERTIES) ]
  ;
 test-suite date_time_gregorian_dll
@@ -49,7 +48,6 @@ test-suite date_time_gregorian_dll
    [ run gregorian/testgenerators.cpp ../build//boost_date_time : : : $(DATE_TIME_DYNAMIC_PROPERTIES) : testgenerators_dll ]
    [ run gregorian/testgreg_cal.cpp ../build//boost_date_time : : : $(DATE_TIME_DYNAMIC_PROPERTIES) : testgreg_cal_dll ]
    [ run gregorian/testgreg_day.cpp ../build//boost_date_time : : : $(DATE_TIME_DYNAMIC_PROPERTIES) : testgreg_day_dll ]     
-   [ run gregorian/testgreg_month.cpp ../build//boost_date_time : : : $(DATE_TIME_DYNAMIC_PROPERTIES) : testgreg_month_dll ]
    [ run gregorian/testgreg_year.cpp ../build//boost_date_time : : : $(DATE_TIME_DYNAMIC_PROPERTIES) : testgreg_year_dll ]
    [ run gregorian/testgreg_durations.cpp ../build//boost_date_time : : : $(DATE_TIME_DYNAMIC_PROPERTIES) : testgreg_durations_dll ]
   ;
