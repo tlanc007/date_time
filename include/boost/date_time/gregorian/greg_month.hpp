@@ -9,6 +9,9 @@
  * $Date$
  */
 
+// Todo: temp hack until config in place
+#define BOOST_NO_CXX17_CONST_INLINE 1
+
 #include <boost/date_time/constrained_value.hpp>
 #include <boost/date_time/date_defs.hpp>
 #include "greg_names.hpp"
@@ -104,6 +107,7 @@ namespace gregorian {
       }
 #endif // BOOST_NO_STD_WSTRING
     //! Map of Month strings (Names & Abbrev) & numbers
+      // Todo: look into bringing back const
     static /* const */ month_map_type& get_month_map()
       {
 #ifndef BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX

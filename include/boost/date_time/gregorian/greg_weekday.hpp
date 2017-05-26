@@ -9,6 +9,9 @@
  * $Date$
  */
 
+// Todo: temp hack until config in place
+#define BOOST_NO_CXX17_CONST_INLINE 1
+
 #include <boost/date_time/constrained_value.hpp>
 #include <boost/date_time/date_defs.hpp>
 #include <boost/date_time/compiler_config.hpp>
@@ -30,8 +33,7 @@ namespace gregorian {
   using date_time::Thursday;
   using date_time::Friday;
   using date_time::Saturday;
-
-
+    
   //! Exception that flags that a weekday number is incorrect
   struct BOOST_SYMBOL_VISIBLE bad_weekday : public std::out_of_range
   {
@@ -63,11 +65,11 @@ namespace gregorian {
 #  ifndef BOOST_NO_STD_WSTRING
       //! Return a 3 digit english wchar_t string of the day of week (eg: Sun)
       const wchar_t* as_short_wstring() const {
-          return w_short_weekday_names[value_];
+          return greg_names::w_short_weekday_names[value_];
       }
       //! Return a point to a long english wchar_t string representing day of week
       const wchar_t* as_long_wstring()  const {
-          return w_long_weekday_names[value_];
+          return greg_names::w_long_weekday_names[value_];
       }
 #  endif // BOOST_NO_STD_WSTRING
 #else

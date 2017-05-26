@@ -12,7 +12,8 @@
 #ifndef DATE_TIME_SRC_GREG_NAMES_17_HPP___
 #define DATE_TIME_SRC_GREG_NAMES_17_HPP___
 
-#ifndef BOOST_NO_CXX17_CONST_INLINE
+// Todo: temp hack, need to remove
+#if 0  // ifndef BOOST_NO_CXX17_CONST_INLINE
 #include <array>
 #include <string_view>
 
