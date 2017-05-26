@@ -107,31 +107,6 @@ namespace std {
 #  define BOOST_DATE_TIME_UNREACHABLE_EXPRESSION(x) x
 #endif
 
-/* The following handles the definition of the necessary macros
- * for dll building on Win32 platforms.
- * 
- * For code that will be placed in the date_time .dll, 
- * it must be properly prefixed with BOOST_DATE_TIME_DECL.
- * The corresponding .cpp file must have BOOST_DATE_TIME_SOURCE
- * defined before including its header. For examples see:
- * greg_month.hpp & greg_month.cpp
- * 
- */
-
-// we need to import/export our code only if the user has specifically
-// asked for it by defining either BOOST_ALL_DYN_LINK if they want all boost
-// libraries to be dynamically linked, or BOOST_DATE_TIME_DYN_LINK
-// if they want just this one to be dynamically liked:
-#if defined(BOOST_ALL_DYN_LINK) || defined(BOOST_DATE_TIME_DYN_LINK)
-    // export if this is our own source, otherwise import:
-#   ifdef BOOST_DATE_TIME_SOURCE
-#     define BOOST_DATE_TIME_DECL BOOST_SYMBOL_EXPORT
-#   else
-#     define BOOST_DATE_TIME_DECL BOOST_SYMBOL_IMPORT
-#   endif  // BOOST_DATE_TIME_SOURCE
-#endif  // DYN_LINK
-//
-// if BOOST_WHATEVER_DECL isn't defined yet define it now:
 #ifndef BOOST_DATE_TIME_DECL
 #  define BOOST_DATE_TIME_DECL
 #endif
