@@ -27,7 +27,7 @@ project boost/date_time
     ;
 
 # Base names of the source files for libboost_date_time
-CPP_SOURCES = greg_month greg_weekday date_generators ;
+CPP_SOURCES = dummy ;
 
 lib boost_date_time : gregorian/$(CPP_SOURCES).cpp ;
 

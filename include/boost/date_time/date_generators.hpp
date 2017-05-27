@@ -155,7 +155,15 @@ namespace date_time {
 
 
   //! Returns nth arg as string. 1 -> "first", 2 -> "second", max is 5.
-  BOOST_DATE_TIME_DECL const char* nth_as_str(int n);
+    BOOST_DATE_TIME_DECL const char* nth_as_str(int n) {
+        static const std::string _nth_as_str[] = {
+            "out of range", "first", "second",
+            "third", "fourth", "fifth"
+        };
+        
+        int ele = (n >= 1 && n <= 5)? n: 0;
+        return _nth_as_str[ele].c_str();
+    }
 
   //! Useful generator functor for finding holidays
   /*! Based on the idea in Cal. Calc. for finding holidays that are
