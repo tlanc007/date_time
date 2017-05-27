@@ -25,7 +25,7 @@
 
 namespace boost {
 namespace gregorian {
-  
+    
   //! Configuration of the output facet template
   struct BOOST_SYMBOL_VISIBLE greg_facet_config
   {
@@ -244,23 +244,60 @@ namespace gregorian {
     return is;
   }
 
+#ifndef BOOST_DATE_TIME_NO_LOCALE
   //! generates a locale with the set of gregorian name-strings of type char*
-  BOOST_DATE_TIME_DECL std::locale generate_locale(std::locale& loc, char type);
+    BOOST_DATE_TIME_DECL std::locale generate_locale(std::locale& loc, char type) {
+        typedef boost::date_time::all_date_names_put<greg_facet_config, char> facet_def;
+        return std::locale(loc, new facet_def(greg_names::short_month_names,
+                                              greg_names::long_month_names,
+                                              greg_names::special_value_names,
+                                              greg_names::short_weekday_names,
+                                              greg_names::long_weekday_names)
+                           );
+    }
 
   //! Returns a pointer to a facet with a default set of names (English)
   /* Necessary in the event an exception is thrown from op>> for 
    * weekday or month. See comments in those functions for more info */
-  BOOST_DATE_TIME_DECL boost::date_time::all_date_names_put<greg_facet_config, char>* create_facet_def(char type);
+  BOOST_DATE_TIME_DECL boost::date_time::all_date_names_put<greg_facet_config, char>* create_facet_def(char type)
+    {
+        typedef
+        boost::date_time::all_date_names_put<greg_facet_config, char> facet_def;
+        
+        return new facet_def(greg_names::short_month_names,
+                             greg_names::long_month_names,
+                             greg_names::special_value_names,
+                             greg_names::short_weekday_names,
+                             greg_names::long_weekday_names);
+    }
 
-#ifndef BOOST_NO_STD_WSTRING
+#   ifndef BOOST_NO_STD_WSTRING
   //! generates a locale with the set of gregorian name-strings of type wchar_t*
-  BOOST_DATE_TIME_DECL std::locale generate_locale(std::locale& loc, wchar_t type);
+    BOOST_DATE_TIME_DECL std::locale generate_locale(std::locale& loc, wchar_t type) {
+        typedef boost::date_time::all_date_names_put<greg_facet_config, wchar_t> facet_def;
+        return std::locale(loc, new facet_def(greg_names::w_short_month_names,
+                                              greg_names::w_long_month_names,
+                                              greg_names::w_special_value_names,
+                                              greg_names::w_short_weekday_names,
+                                              greg_names::w_long_weekday_names)
+                           );
+    }
   //! Returns a pointer to a facet with a default set of names (English)
   /* Necessary in the event an exception is thrown from op>> for 
    * weekday or month. See comments in those functions for more info */
-  BOOST_DATE_TIME_DECL boost::date_time::all_date_names_put<greg_facet_config, wchar_t>* create_facet_def(wchar_t type);
-#endif // BOOST_NO_STD_WSTRING
-
+    BOOST_DATE_TIME_DECL boost::date_time::all_date_names_put<greg_facet_config, wchar_t>* create_facet_def(wchar_t type) {
+        typedef
+        boost::date_time::all_date_names_put<greg_facet_config,wchar_t> facet_def;
+        
+        return new facet_def(greg_names::w_short_month_names,
+                             greg_names::w_long_month_names,
+                             greg_names::w_special_value_names,
+                             greg_names::w_short_weekday_names,
+                             greg_names::w_long_weekday_names);
+    }
+#   endif // BOOST_NO_STD_WSTRING
+#endif // BOOST_DATE_TIME_NO_LOCALE
+    
   //! operator>> for gregorian::greg_month - throws exception if invalid month given
   template<class charT>
   inline
