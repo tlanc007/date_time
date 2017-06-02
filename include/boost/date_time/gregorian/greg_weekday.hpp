@@ -9,8 +9,6 @@
  * $Date$
  */
 
-// Todo: temp hack until config in place
-#define BOOST_NO_CXX17_CONST_INLINE 1
 
 #include <boost/date_time/constrained_value.hpp>
 #include <boost/date_time/date_defs.hpp>
@@ -53,7 +51,7 @@ namespace gregorian {
 
     unsigned short as_number() const {return value_;}
       
-#ifdef BOOST_NO_CXX17_CONST_INLINE
+#ifdef BOOST_NO_CXX17_INLINE_VARIABLES
       //! Return a 3 digit english string of the day of week (eg: Sun)
       const char* as_short_string() const {
           return greg_names::short_weekday_names[value_];
@@ -87,7 +85,7 @@ namespace gregorian {
           return w_long_weekday_names[value_].data();
       }
 #  endif // BOOST_NO_STD_WSTRING
-#endif // BOOST_NO_CXX17_CONST_INLINE
+#endif // BOOST_NO_CXX17_INLINE_VARIABLES
     weekday_enum as_enum() const {return static_cast<weekday_enum>(value_);}
 
 

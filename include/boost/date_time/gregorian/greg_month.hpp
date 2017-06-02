@@ -9,9 +9,6 @@
  * $Date$
  */
 
-// Todo: temp hack until config in place
-#define BOOST_NO_CXX17_CONST_INLINE 1
-
 #include <boost/date_time/constrained_value.hpp>
 #include <boost/date_time/date_defs.hpp>
 #include "greg_names.hpp"
@@ -71,7 +68,7 @@ namespace gregorian {
     typedef boost::shared_ptr<month_map_type> month_map_ptr_type;
 #else
     using month_map_ptr_type = std::shared_ptr <month_map_type>;
-#endif
+#endif // BOOST_NO_CXX11_SMART_PTR
     //! Construct a month from the months_of_year enumeration
     greg_month(month_enum theMonth) : 
       greg_month_rep(static_cast<greg_month_rep::value_type>(theMonth)) {}
@@ -82,7 +79,7 @@ namespace gregorian {
     //! Returns month as number from 1 to 12
     unsigned short as_number() const {return value_;}
     month_enum as_enum() const {return static_cast<month_enum>(value_);}
-#ifdef BOOST_NO_CXX17_CONST_INLINE
+#ifdef BOOST_NO_CXX17_INLINE_VARIABLES
       const char* as_short_string() const {
           return greg_names::short_month_names[value_-1];
       }
@@ -96,7 +93,7 @@ namespace gregorian {
       const char* as_long_string()  const {
           return long_month_names[value_-1].data();
       }
-#endif
+#endif // BOOST_NO_CXX17_INLINE_VARIABLES
 
 #ifndef BOOST_NO_STD_WSTRING
       const wchar_t* as_short_wstring() const {

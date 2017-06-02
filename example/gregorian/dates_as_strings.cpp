@@ -38,8 +38,8 @@ main()
               << ymd.day << ", " << ymd.year
               << std::endl;
 
-#ifndef BOOST_NO_CXX17_STRUCT_BIND   // hack not offical
-    // C++17 structured bind
+#ifndef BOOST_NO_CXX17_STRUCTURED_BINDINGS
+    // C++17 structured bindings
     auto [yr, mo, dy] = d1.year_month_day();
     std::cout << "\nC++17 Structured binding: " >> mo.as_long_string() << " "
       << dy << ", " << yr << "\n";

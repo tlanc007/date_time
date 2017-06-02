@@ -13,7 +13,7 @@
 #define DATE_TIME_SRC_GREG_NAMES_17_HPP___
 
 // Todo: temp hack, need to remove
-#if 0  // ifndef BOOST_NO_CXX17_CONST_INLINE
+#if 0  // ifndef BOOST_NO_CXX17_INLINE_VARIABLES
 #include <array>
 #include <string_view>
 
@@ -47,5 +47,5 @@ namespace gregorian {
     
 } } // boost::gregorian
 
-#endif // BOOST_NO_CXX17_CONST_INLINE
+#endif // BOOST_NO_CXX17_INLINE_VARIABLES
 #endif // DATE_TIME_SRC_GREG_NAMES_17_HPP___

@@ -12,7 +12,7 @@
 #ifndef DATE_TIME_SRC_GREG_NAMES_HPP___
 #define DATE_TIME_SRC_GREG_NAMES_HPP___
 
-#ifdef BOOST_NO_CXX17_CONST_INLINE
+#ifdef BOOST_NO_CXX17_INLINE_VARIABLES
 
 #include "boost/date_time/special_defs.hpp"
 
@@ -59,5 +59,5 @@ namespace gregorian {
 #endif // BOOST_NO_STD_WSTRING
 } } // boost::gregorian
 
-#endif // BOOST_NO_CXX17_CONST_INLINE
+#endif // BOOST_NO_CXX17_INLINE_VARIABLES
 #endif // DATE_TIME_SRC_GREG_NAMES_HPP___
