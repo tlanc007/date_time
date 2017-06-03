@@ -105,7 +105,7 @@ namespace gregorian {
 #endif // BOOST_NO_STD_WSTRING
     //! Map of Month strings (Names & Abbrev) & numbers
       // Todo: look into bringing back const
-    static /* const */ month_map_type& get_month_map()
+    static const month_map_type& get_month_map()
       {
 #ifndef BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
           static const month_map_type months = {

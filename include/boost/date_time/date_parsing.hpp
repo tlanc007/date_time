@@ -64,9 +64,8 @@ namespace date_time {
       }
       else {
         std::string str = convert_to_lower(s);
-          // Todo: look into brining back const
-        typename /* const */ month_type::month_map_type& months = month_type::get_month_map();
-        typename month_type::month_map_type::iterator iter = months.find(str);
+        typename month_type::month_map_type const& months = month_type::get_month_map();
+        typename month_type::month_map_type::const_iterator iter = months.find(str);
         if(iter != months.end() ) { // required for STLport
           return iter->second;
         }
