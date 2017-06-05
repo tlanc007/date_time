@@ -19,11 +19,22 @@
 namespace boost {
 namespace gregorian {
 
-  //! Return special_value from string argument
-  /*! Return special_value from string argument. If argument is 
-   * not one of the special value names (defined in src/gregorian/names.hpp), 
-   * return 'not_special' */
-  BOOST_DATE_TIME_DECL special_values special_value_from_string(const std::string& s);
+    //! Return special_value from string argument
+    /*! Return special_value from string argument. If argument is
+     * not one of the special value names (defined in names.hpp),
+     * return 'not_special' */
+    inline special_values special_value_from_string(const std::string& s) {
+        short i = date_time::find_match(greg_names::special_value_names,
+                                        greg_names::special_value_names,
+                                        date_time::NumSpecialValues,
+                                        s);
+        if(i >= date_time::NumSpecialValues) { // match not found
+            return not_special;
+        }
+        else {
+            return static_cast<special_values>(i);
+        }
+    }
 
   //! Deprecated: Use from_simple_string
   inline date from_string(std::string s) {
