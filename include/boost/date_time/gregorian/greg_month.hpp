@@ -109,9 +109,18 @@ namespace gregorian {
       {
 #ifndef BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
           static const month_map_type months = {
-              {"Jan", 1}, {"Feb", 2}, {"Mar", 3}, {"Apr", 4},
-              {"May", 5}, {"Jun", 6}, {"Jul", 7}, {"Aug", 8},
-              {"Sep", 9}, {"Oct", 10}, {"Nov", 11}, {"Dec", 12}
+              {"jan", 1}, {"january", 1},
+              {"feb", 2}, {"february", 2},
+              {"mar", 3}, {"march", 3},
+              {"apr", 4}, {"april", 4},
+              {"may", 5},
+              {"jun", 6}, {"june", 6},
+              {"jul", 7}, {"july", 7},
+              {"aug", 8}, {"august", 8},
+              {"sep", 9}, {"september", 9},
+              {"oct", 10}, {"october", 10},
+              {"nov", 11}, {"november", 11},
+              {"dec", 12}, {"december", 12}
           };
 #else
           static month_map_type months;
@@ -119,18 +128,29 @@ namespace gregorian {
           
           if (is_first) {
               is_first = false;
-              months["Jan"] = 1;
-              months["Feb"] = 2;
-              months["Mar"] = 3;
-              months["Apr"] = 4;
-              months["May"] = 5;
-              months["Jun"] = 6;
-              months["Jul"] = 7;
-              months["Aug"] = 8;
-              months["Sep"] = 9;
-              months["Oct"] = 10;
-              months["Nov"] = 11;
-              months["Dec"] = 12;
+              months["jan"] = 1;
+              months["january"] = 1;
+              months["feb"] = 2;
+              months["february"] = 2;
+              months["mar"] = 3;
+              months["march"] = 3;
+              months["apr"] = 4;
+              months["april"] = 4;
+              months["may"] = 5;
+              months["jun"] = 6;
+              months["june"] = 6;
+              months["jul"] = 7;
+              months["july"] = 7;
+              months["aug"] = 8;
+              months["august"] = 8;
+              months["sep"] = 9;
+              months["september"] = 9;
+              months["oct"] = 10;
+              months["october"] = 10;
+              months["nov"] = 11;
+              months["november"] = 11;
+              months["dec"] = 12;
+              months["december"] = 12;
           }
 #endif // BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
           return months;
